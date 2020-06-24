@@ -1,0 +1,19 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <hr>
+  <p><strong>Category:</strong> <%= @restaurant.category %></p>
+  <p><strong>City:</strong> <%= @restaurant.address %></p>
+  <p><strong>Phone Number:</strong> <%= @restaurant.phone_number %></p>
+  <p><strong>Reviews:</strong></p>
+
+  <% if @reviews.empty? %>
+    <p>There are no reviews for <%= @restaurant.name %> yet. <%= link_to "Be the first!", new_restaurant_review_path(@restaurant) %> </p>
+  <% else %>
+    <% @reviews.each do |review| %>
+    <p><%= review.content %> / <%= review.rating %> </p>
+    <% end %>
+    <%= link_to "Add a Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  <% end %>
+</br>
+  <%= link_to "Back to All Restaurants", restaurants_path, class: "btn btn-outline-primary" %>
+</div>
